@@ -1,6 +1,6 @@
 # Structure-From-Motion
 A simple implementation of classical Structure From Motion  
-This project was done in collaboration with [@Dushyant Patil]() and under the guidance of [Prof. Nitin J. Sanket](https://nitinjsanket.github.io/index.html)
+This project was done in collaboration with [@Dushyant Patil](https://github.com/dushyant6) and under the guidance of [Prof. Nitin J. Sanket](https://nitinjsanket.github.io/index.html)
 
 ## What is SfM?
 Structure from Motion refers to reconstruction of a 3D scene and simultaneously obtain the camera poses of a monocular camera w.r.t. the given scene.
