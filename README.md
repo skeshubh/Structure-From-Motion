@@ -21,4 +21,6 @@ and *SIFT* keypoints and descriptors for each image.
 The fundamental matrix represents the epipolar geometry between 2 images. The fundamental matrix between 2 cameras with corresponding image points 
 x and x’ of same world point X is governed by equation: $x'F^Tx = 0$  
 Let the fundamental matrix be defined as below:  
-![Fundamental Matrix Description](/Images/Screenshot from 2022-12-22 12-45-12.png)
+![Fundamental Matrix Description](Assets/Images/FundamentalMatrix.png)  
+To find the fundamental matrix between 2 cameras using 2 images of similar scene, we need minimum 8 point matches. To solve for the elements of the fundamental matrix, we need to use the SVD of the A matrix formed using the 8 or more correspondences as shown below:
+
