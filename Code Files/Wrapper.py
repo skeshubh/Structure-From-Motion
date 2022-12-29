@@ -34,9 +34,10 @@ from BuildVisibilityMatrix import AdaptiveVisibility
 from BundleAdjustment import Bundle_Error
 import time
 
-def plot_images(image_number, P_matrix, K_matrix, image_points, world_points, string):
+def plot_images(image_number, P_matrix, K_matrix, image_points, world_points, string ,ip):
+    address = ip + str(image_number) + ".png"
     b = 'P3Data/%d.png'%image_number
-    img1 = cv.imread(b)
+    img1 = cv.imread(address)
     img = img1.copy()
     for i in range(len(image_points)):
         cv.circle(img, (int(image_points[i][0]),int(image_points[i][1])), 3, [0,0,255], 1)
@@ -126,8 +127,8 @@ P[0][0] = P[1][1] = P[2][2] = 1
 P_set.append(P)
 # 6) Find real camera pose
 Linear_World_points_12, real_pose = DisambiguateCameraPose(inliers1_12f, inliers2_12f, P, P_dash, K, R, C)
-plot_images(1, P, K, inliers1_12f, Linear_World_points_12, 'img1 Linear world points')
-plot_images(2, P_dash[real_pose], K, inliers2_12f, Linear_World_points_12, 'img2 Linear world points')
+plot_images(1, P, K, inliers1_12f, Linear_World_points_12, 'img1 Linear world points',ip)
+plot_images(2, P_dash[real_pose], K, inliers2_12f, Linear_World_points_12, 'img2 Linear world points',ip)
 print('final P_dash matrix\n', P_dash[real_pose])
 P_set.append(P_dash[real_pose])
 # 7) find optimized world points
@@ -142,8 +143,8 @@ for i in range(len(Linear_World_points_12)):
 
 optimized_world_points_12 = new_non_linear_12
 world_points_old = new_non_linear_12.copy()
-plot_images(1, P, K, inliers1_12f, new_non_linear_12, 'img1 Non Linear world points')
-plot_images(2, P_dash[real_pose], K, inliers2_12f, new_non_linear_12, 'img2 Non Linear world points')
+plot_images(1, P, K, inliers1_12f, new_non_linear_12, 'img1 Non Linear world points',ip)
+plot_images(2, P_dash[real_pose], K, inliers2_12f, new_non_linear_12, 'img2 Non Linear world points',ip)
 
 #___________________________________________________________________________________________________________________________________
 #prepare inputs for third image looping
@@ -201,10 +202,10 @@ for i in range(2,5):
         Linear_World_Points.append(new_world_points[j])
       
     im_num = i+1
-    plot_images(i+1, nonlinear_PnP_Undecomposed, I, new_inliers_dst_f, new_world_points, 'img%d New world points Linear'%im_num)
-    plot_images(i+1, nonlinear_PnP_Undecomposed, I, new_inliers_dst_f, new_non_linear_x, 'img%d New world points Non Linear'%im_num)
-    plot_images(i+1, PnP_RANSAC_Matrix, I, common_inliers_dst_f, common_worldpoints_f, 'img%d PnP RANSAC'%im_num)
-    plot_images(i+1, nonlinear_PnP_Undecomposed, I, common_inliers_dst_f, common_worldpoints_f, 'img%d PnP Non Linear'%im_num)
+    plot_images(i+1, nonlinear_PnP_Undecomposed, I, new_inliers_dst_f, new_world_points, 'img%d New world points Linear'%im_num,ip)
+    plot_images(i+1, nonlinear_PnP_Undecomposed, I, new_inliers_dst_f, new_non_linear_x, 'img%d New world points Non Linear'%im_num,ip)
+    plot_images(i+1, PnP_RANSAC_Matrix, I, common_inliers_dst_f, common_worldpoints_f, 'img%d PnP RANSAC'%im_num,ip)
+    plot_images(i+1, nonlinear_PnP_Undecomposed, I, common_inliers_dst_f, common_worldpoints_f, 'img%d PnP Non Linear'%im_num,ip)
     
     # Append all image points
     old_image_points_count = len(All_Image_Points_list)
