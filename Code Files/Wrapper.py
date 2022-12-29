@@ -65,8 +65,17 @@ def error_func(world_point, src_point, dst_point, P, P_dash, K):
     return err
 
 start = time.time()
+
+reading = open('location.txt','r')
+ip_line = reading.readline()
+ip = ip_line.split(':')[1][:-1]
+op_line = reading.readline()
+op = op_line.split(':')[1][:-1]
+
+
 #image number 1
-file4 = open(r'P3Data/matching1.txt', 'r')
+address = ip+"matching1.txt"
+file4 = open(address, 'r')
 file4_lines = []
 for count,line in enumerate(file4):
     file4_lines.append(line)
@@ -262,4 +271,5 @@ for i in range(2,5):
     plt.axis('off')
     plt.xlim([-15, 15])
     plt.ylim([-5, 25])
-    plt.savefig('output_images/XvZ.jpg')
+    address = op+"XvZ.jpg"
+    plt.savefig(address)
