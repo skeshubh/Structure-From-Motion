@@ -78,4 +78,16 @@ camera 3,4,5, etc are further used to find the world points corresponding to the
 
 #### Bundle Adjustment
 After computing all the camera poses and 3D points, the bundle adjustment is used to refine the camera pose and world point estimates of all cameras. To improve the speed of the implementation of bundle adjustment, a visibility matrix is used to minimize the reprojection error for the 3D points which are visible to particular cameras only. The optimization problem for visibility matrix can be shown as below:  
-![BundleAdjustment](Assets/Images/BundleAdjustment.png)
+![BundleAdjustment](Assets/Images/BundleAdjustment.png)  
+
+## How to run code?
+#### Required packages
+* Python 3
+* NumPy  
+* OpenCV  
+* SciPy  
+
+#### Running  
+* Make sure the path to input images & output folder in your device is updates in __location.txt__ .  
+* Run the __Wrapper.py__ by the following command.
+> python3 Wrapper.py
